@@ -4,6 +4,10 @@ import TailwindIcon from "../icons/TailwindIcon.astro";
 import ReactIcon from "../icons/ReactIcon.astro";
 import JavaIcon from "../icons/JavaIcon.astro";
 import SpringIcon from "../icons/SpringIcon.astro";
+import SqlIcon from "../icons/SqlIcon.astro";
+import LinkButton from "./LinkButton.astro";
+import GitHubIcon from "../icons/GitHubIcon.astro";
+import WebIcon from "../icons/WebIcon.astro";
 
 const TAGS = {
   SPRING: {
@@ -31,42 +35,65 @@ const TAGS = {
     class: "bg-[#003159] text-white",
     icon: TailwindIcon,
   },
+  SQL: {
+    name: "SQL",
+    class: "bg-[#003159] text-white",
+    icon: SqlIcon,
+  },
 };
 const PROJECTS = [
   {
     title: "SVGL - A beautiful library with SVG logos",
     description:
       "Created from scratch with Next.js and Tailwind CSS. It's a library with SVG logos from the most popular brands. Optimized for SEO and performance.",
-    link: "https://svgl.vercel.app/",
-    github: "https://github.com/pheralb/svgl",
-    video: "/Digital-Booking-Demo.webm",
-    tags: [TAGS.REACT, TAGS.JAVA, TAGS.SPRING],
+    link: null,
+    github: "https://github.com/miguelmoreno03/proyectoIntegrador",
+    video: "/Digital-Booking-Demo.webm#t=0.75",
+    tags: [TAGS.REACT, TAGS.JAVA, TAGS.SPRING, TAGS.SQL],
   },
 ];
 ---
 
-{
-  PROJECTS.map(({ video, title, description, tags }) => (
-    <article>
-      <h3 class="text-2xl font-semibold  text-sky-300 mb-2">{title}</h3>
-      <p class="text-lg mb-4 text-pretty">{description}</p>
-      <ul class="flex gap-x-2 flex-row mb-2">
-        {tags.map((tag) => (
-          <li>
-            <span
-              class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 border border-white/10`}
-            >
-              <tag.icon class="size-4" />
-              {tag.name}
-            </span>
-          </li>
-        ))}
-      </ul>
-      <video
-        class="rounded shadow-2xl shadow-white/10 aspect-video"
-        src={video}
-        controls
-      />
-    </article>
-  ))
-}
+<section class="flex flex-col gap-y-16">
+  {
+    PROJECTS.map(({ video, title, description, tags, link, github }) => (
+      <article>
+        <h3 class="text-2xl font-semibold  text-sky-300 mb-2">{title}</h3>
+        <p class="text-lg mb-4 text-pretty">{description}</p>
+        <ul class="flex gap-x-2 flex-row mb-2">
+          {tags.map((tag) => (
+            <li>
+              <span
+                class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2  `}
+              >
+                <tag.icon class="size-4" />
+                {tag.name}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <video
+          preload="metadata"
+          class="rounded shadow-2xl shadow-white/10 aspect-video"
+          controls
+        >
+          <source src={video} type="video/webm" />
+        </video>
+        <footer class="flex gap-x-4 items-end justify-end mt-4">
+          {github && (
+            <LinkButton href={github}>
+              <GitHubIcon class="size-6" />
+              ver codigo fuente
+            </LinkButton>
+          )}
+          {link && (
+            <LinkButton>
+              <WebIcon class="size-6" />
+              ir al sitio web
+            </LinkButton>
+          )}
+        </footer>
+      </article>
+    ))
+  }
+</section>
