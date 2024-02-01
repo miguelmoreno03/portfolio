@@ -1,6 +1,28 @@
 ---
-import ColombianFlagIcon from "../icons/ColombianFlag.astro"
+const navItems = [
+  {
+    title: "Experiencia",
+    label: "experiencia",
+    url: "/#experiencia",
+  },
+  {
+    title: "Proyectos",
+    label: "proyectos",
+    url: "/#proyectos",
+  },
+  {
+    title: "Sobre mí",
+    label: "sobre-mi",
+    url: "/#sobre-mi",
+  },
+  {
+    title: "Contacto",
+    label: "contacto",
+    url: "/#contacto",
+  },
+]
 ---
+
 <header
   class={`
     flex justify-center items-center
@@ -16,27 +38,19 @@ import ColombianFlagIcon from "../icons/ColombianFlag.astro"
     border border-white rounded-full
     px-3 py-1
     flex flex-row items-center
+     
     backdrop-blur-2xl
   `}
   >
-    <a class="hover:bg-white/10 rounded-full px-3 transition" href="#top">
-      Inicio
-    </a>
-    <a
-      class="hover:bg-white/10 rounded-full px-3 transition"
-      href="/#experiencia"
-    >
-      Experiencia
-    </a>
-    <a class="hover:bg-white/10 rounded-full px-3 transition" href="/#proyectos"
-      >Proyectos</a
-    >
-    <a class="hover:bg-white/10 rounded-full px-3 transition" href="/#sobre-mi"
-      >Sobre mí</a
-    >
-    <a class="hover:bg-white/10 rounded-full px-3 transition" href="/#contacto"
-      >Contacto</a
-    >
-  
+    {
+      navItems.map((link)=> (
+      <a class="hover:bg-white/10 rounded-full px-3 transition" href={link.url} aria-label={link.label}>
+        {link.title} </a>
+      ))
+    }
+    
+    
   </nav>
 </header>
+
+
